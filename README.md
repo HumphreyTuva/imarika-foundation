@@ -134,14 +134,14 @@ imarika-foundation/
 ## Screenshots
 
 ![Homepage](screenshots/homepage.png)
-![Homepage mobile](screenshots/homepage-mobile.jpeg)
-![About page mobile](screenshots/about-mobile.jpeg)
-![Contact page](screenshots/contact.png)
-![Get involved](screenshots/get-involved.png)
+![Programs page](screenshots/programs.png)
 ![Impact page](screenshots/impact.png)
 ![Leadership page](screenshots/leadership.png)
+![Get involved](screenshots/get-involved.png)
 ![News page](screenshots/news.png)
-![Programs page](screenshots/programs.png)
+![Contact page](screenshots/contact.png)
+![Homepage mobile](screenshots/homepage-mobile.jpeg)
+![About page mobile](screenshots/about-mobile.jpeg)
 
 ## Quick Start
 
