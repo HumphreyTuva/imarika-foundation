@@ -8,12 +8,11 @@ import './coastal-fire.css';
 const NAV_ITEMS = [
   { label: "Home",         path: "/",             type: "route" },
   { label: "About Us",     path: "/about",        type: "route" },
-  { label: "Our Programs", path: "/programs",     type: "route" },
+  { label: "Programs", path: "/programs",     type: "route" },
   { label: "Impact",       path: "/impact",       type: "route" },
-  { label: "Get Involved", path: "/get-involved", type: "route" },  
+  { label: "Opportunities", path: "/tenders", type: "route" }, 
+  { label: "News",         path: "/news",         type: "route" }, 
   { label: "Leadership",   path: "/leadership",   type: "route" },
-  { label: "Articles",     path: "/articles",     type: "route" },
-  { label: "News",         path: "/news",         type: "route" },
   { label: "Contact Us",   id:   "contact",       type: "scroll" },
 ];
 

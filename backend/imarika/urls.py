@@ -11,6 +11,7 @@ urlpatterns = [
     path('', include('imarikapp.urls')),  # Replace 'api' with your actual app name if different
     path('api/', include('imarikapp.urls')),
     path('', include('accounts.urls')),
+    path("", include("opportunities.urls")),
 
 ]
 

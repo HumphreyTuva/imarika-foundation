@@ -53,7 +53,8 @@ const ABOUT_CSS = `
   .ab-val-grid { display:grid; grid-template-columns:1fr; gap:1.5rem; }
   @media(min-width:480px){ .ab-val-grid { grid-template-columns:repeat(2,1fr); } }
   @media(min-width:900px){ .ab-val-grid { grid-template-columns:repeat(5,1fr); } }
-  .ab-val-card { background:#ffffff; border:1px solid #f1f5f9; border-left:3px solid #ee4c05; padding:1.75rem 1.5rem; transition:border-color .25s,transform .3s,box-shadow .3s; height:100%; display:flex; flex-direction:column; }  .ab-val-card:hover { transform:translateY(-4px); box-shadow:0 20px 40px rgba(4, 52, 99, 0.08); }
+  .ab-val-card { background:#ffffff; border:1px solid #f1f5f9; border-left:3px solid #ee4c05; padding:1.75rem 1.5rem; transition:border-color .25s,transform .3s,box-shadow .3s; height:100%; display:flex; flex-direction:column; }
+  .ab-val-card:hover { transform:translateY(-4px); box-shadow:0 20px 40px rgba(4, 52, 99, 0.08); }
   .ab-val-icon { font-size:2rem; margin-bottom:1rem; }
   .ab-val-h  { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; letter-spacing:.04em; color:#043463; margin-bottom:.625rem; }
   .ab-val-p  { font-size:.8rem; color:#64748b; line-height:1.75; }
@@ -78,6 +79,14 @@ const ABOUT_CSS = `
   /* Footer Social Icons */
   .cf-social-link { color:rgba(255,255,255,0.4); font-size:1.25rem; transition:color 0.25s, transform 0.25s; display:inline-block; }
   .cf-social-link:hover { color:#ee4c05; transform:translateY(-3px); }
+
+  /* LinkedIn card */
+  .ab-linkedin-card { background:#ffffff; padding:1.5rem; border:1px solid #f1f5f9; borderTop:3px solid #0A66C2; box-shadow:0 20px 40px rgba(4,52,99,.04); height:100%; display:flex; flex-direction:column; }
+  .ab-linkedin-body { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.25rem; min-height:400px; text-align:center; padding:2rem; }
+  .ab-linkedin-icon { font-size:4rem; color:#0A66C2; }
+  .ab-linkedin-text { color:#475569; font-size:.9rem; line-height:1.75; max-width:280px; }
+  .ab-linkedin-btn { display:inline-flex; align-items:center; gap:.5rem; background:#0A66C2; color:#fff; padding:.85rem 1.75rem; border-radius:2px; text-decoration:none; font-family:'Outfit',sans-serif; font-size:.72rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; transition:background .2s; }
+  .ab-linkedin-btn:hover { background:#004182; }
 
   /* Scroll reveal */
   .ab-rv { opacity:0; transform:translateY(24px); transition:opacity .7s ease,transform .7s ease; }
@@ -109,7 +118,7 @@ export default function AboutPage() {
       <Helmet><title>About Us · Imarika Foundation</title></Helmet>
       <Navbar />
 
-      {/* Hero - Now Navy Blue */}
+      {/* Hero */}
       <section className="ab-hero">
         <div className="ab-hero-ghost" aria-hidden="true">ABOUT</div>
         <div className="ab-hero-slash" style={{ height:"clamp(80px,12vh,130px)", right:"clamp(1.5rem,8vw,6rem)", top:"50%", background: "#ee4c05" }} aria-hidden="true" />
@@ -141,7 +150,7 @@ export default function AboutPage() {
                 { n:"2015",   l:"Year Founded"    },
                 { n:"5",      l:"Programme Areas" },
                 { n:"Kilifi", l:"Base County"      },
-                { n:"2015",   l:"PBO Registered"    },
+                { n:"2015",   l:"PBO Registered"  },
               ].map(s => (
                 <div key={s.l} className="ab-stat-cell">
                   <div className="ab-stat-n">{s.n}</div>
@@ -256,26 +265,22 @@ export default function AboutPage() {
             <span className="cf-label" style={{ color: "#0e7fbb" }}>Stay Connected</span>
             <h2 className="cf-h2" style={{ color: "#043463", marginBottom:"clamp(2.5rem,5vw,4rem)" }}>OUR <span style={{ color:"#ee4c05" }}>SOCIALS.</span></h2>
           </Reveal>
-          
-          {/* We ensure the grid items stretch to match heights */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "2rem", alignItems: "stretch" }}>
-            
-            {/* Facebook Page Timeline Embed */}
-            {/* Added style={{ height: "100%" }} to Reveal so the card can stretch */}
-            <Reveal delay={0} style={{ height: "100%" }}>
-              <div style={{ background: "#ffffff", padding: "1.5rem", border: "1px solid #f1f5f9", borderTop: "3px solid #1877F2", boxShadow: "0 20px 40px rgba(4, 52, 99, 0.04)", height: "100%", display: "flex", flexDirection: "column" }}>
-                <h3 className="ab-val-h" style={{ marginBottom: "1rem", color: "#1877F2" }}>Facebook</h3>
-                
-                {/* flex: 1 pushes the iframe to center vertically if the box gets really tall */}
-                <div style={{ width: "100%", flex: 1, overflow: "hidden", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                  <iframe 
-                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100081154223367&tabs=timeline&width=500&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" 
-                    width="100%" 
-                    height="600" 
-                    style={{ border: "none", overflow: "hidden", maxWidth: "500px", width: "100%" }} 
-                    scrolling="no" 
-                    frameBorder="0" 
-                    allowFullScreen={true} 
+
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit, minmax(300px, 1fr))", gap:"2rem", alignItems:"stretch" }}>
+
+            {/* Facebook embed */}
+            <Reveal delay={0} style={{ height:"100%" }}>
+              <div style={{ background:"#ffffff", padding:"1.5rem", border:"1px solid #f1f5f9", borderTop:"3px solid #1877F2", boxShadow:"0 20px 40px rgba(4,52,99,.04)", height:"100%", display:"flex", flexDirection:"column" }}>
+                <h3 className="ab-val-h" style={{ marginBottom:"1rem", color:"#1877F2" }}>Facebook</h3>
+                <div style={{ width:"100%", flex:1, overflow:"hidden", display:"flex", justifyContent:"center", alignItems:"center" }}>
+                  <iframe
+                    src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100081154223367&tabs=timeline&width=500&height=600&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+                    width="100%"
+                    height="600"
+                    style={{ border:"none", overflow:"hidden", maxWidth:"500px", width:"100%" }}
+                    scrolling="no"
+                    frameBorder="0"
+                    allowFullScreen={true}
                     allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
                     title="Imarika Foundation Facebook Feed"
                   />
@@ -283,16 +288,23 @@ export default function AboutPage() {
               </div>
             </Reveal>
 
-            {/* LinkedIn Scrolling Widget (Elfsight) */}
-            <Reveal delay={100} style={{ height: "100%" }}>
-              <div style={{ background: "#ffffff", padding: "1.5rem", border: "1px solid #f1f5f9", borderTop: "3px solid #0A66C2", boxShadow: "0 20px 40px rgba(4, 52, 99, 0.04)", height: "100%", display: "flex", flexDirection: "column" }}>
-                <h3 className="ab-val-h" style={{ marginBottom: "1rem", color: "#0A66C2" }}>LinkedIn</h3>
-                
-                <div style={{ width: "100%", flex: 1, overflow: "hidden", minHeight: "600px" }}>
-                  <div 
-                    className="elfsight-app-a784ae8d-cd8e-4b06-836f-061d2ceaf769" 
-                    data-elfsight-app-lazy="true"
-                  ></div>
+            {/* LinkedIn — replaced crashing Elfsight widget with a clean link card */}
+            <Reveal delay={100} style={{ height:"100%" }}>
+              <div style={{ background:"#ffffff", padding:"1.5rem", border:"1px solid #f1f5f9", borderTop:"3px solid #0A66C2", boxShadow:"0 20px 40px rgba(4,52,99,.04)", height:"100%", display:"flex", flexDirection:"column" }}>
+                <h3 className="ab-val-h" style={{ marginBottom:"1rem", color:"#0A66C2" }}>LinkedIn</h3>
+                <div style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:"1.25rem", minHeight:"400px", textAlign:"center", padding:"2rem" }}>
+                  <FaLinkedin style={{ fontSize:"4rem", color:"#0A66C2" }} />
+                  <p style={{ color:"#475569", fontSize:".9rem", lineHeight:1.75, maxWidth:"280px" }}>
+                    Follow us on LinkedIn for updates, opportunities, and impact stories from Imarika Foundation.
+                  </p>
+                  <a
+                    href="https://www.linkedin.com/in/imarika-foundation-88a645253/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ display:"inline-flex", alignItems:"center", gap:".5rem", background:"#0A66C2", color:"#fff", padding:".85rem 1.75rem", borderRadius:"2px", textDecoration:"none", fontFamily:"'Outfit',sans-serif", fontSize:".72rem", fontWeight:800, letterSpacing:".1em", textTransform:"uppercase", transition:"background .2s" }}
+                  >
+                    <FaLinkedin aria-hidden="true" /> Follow on LinkedIn
+                  </a>
                 </div>
               </div>
             </Reveal>
@@ -301,19 +313,15 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Footer strip with Socials */}
+      {/* Footer */}
       <footer style={{ background:"#043463", padding:"3rem var(--cp) 2rem", textAlign:"center", borderTop:"1px solid rgba(255,255,255,.05)" }}>
-        
-        {/* Social Icons Container (Mapped like Home.jsx) */}
-        <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "1.5rem", marginBottom: "1.5rem" }}>
+        <div style={{ display:"flex", justifyContent:"center", flexWrap:"wrap", gap:"1.5rem", marginBottom:"1.5rem" }}>
           {SOCIALS.map(s => (
             <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="cf-social" aria-label={`Follow on ${s.label}`}>
               {s.icon}
             </a>
           ))}
         </div>
-
-        {/* Copyright Text */}
         <p style={{ fontFamily:"'Outfit',sans-serif", fontSize:".75rem", color:"rgba(255,255,255,.4)" }}>
           © {new Date().getFullYear()} Imarika Foundation · Kenya
         </p>
