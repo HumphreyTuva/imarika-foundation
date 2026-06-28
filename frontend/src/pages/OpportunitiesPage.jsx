@@ -78,7 +78,7 @@ export const TYPE_CONFIG = {
    GET (list/retrieve) is public; write methods require staff auth.
    ───────────────────────────────────────────── */
 
-export const API_BASE = "http://127.0.0.1:8080/api/opportunities/";
+export const API_BASE = "https://imarikafoundation.pythonanywhere.com/api/opportunities/";
 
 /**
  * Normalises a raw Opportunity record returned by the API
