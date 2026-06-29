@@ -52,8 +52,7 @@ class ProgramsDataView(APIView):
     permission_classes = [AllowAny]
 
     def get(self, request):
-        # Prevent future KeyErrors by excluding empty pillars
-        programs = SubProgram.objects.exclude(pillar__exact='')
+        programs = SubProgram.objects.all()
         
         # Group them by pillar slug so React can easily look them up
         grouped_programs = {
@@ -65,14 +64,12 @@ class ProgramsDataView(APIView):
         }
 
         for prog in programs:
-            # .setdefault() prevents a crash if a new or unrecognized pillar exists in the DB
-            grouped_programs.setdefault(prog.pillar, []).append(SubProgramSerializer(prog).data)
+            grouped_programs[prog.pillar].append(SubProgramSerializer(prog).data)
 
         return Response(grouped_programs)
     
 class ImpactDataView(APIView):
     permission_classes = [AllowAny]
-    
     def get(self, request):
         # Optional: Add a query parameter to filter by year (e.g., ?year=2024)
         target_year = request.query_params.get('year', 2024) 
@@ -82,9 +79,8 @@ class ImpactDataView(APIView):
         reports = Report.objects.all()
         
         # Group stats by Pillar
-        # Exclude empty pillars to fix the KeyError: ''
-        pillar_stats_qs = PillarStat.objects.exclude(pillar__exact='')
-        
+        # To this:
+        pillar_stats_qs = PillarStat.objects.all()
         grouped_pillars = {
             'Education': [],
             'Health': [],
@@ -94,8 +90,7 @@ class ImpactDataView(APIView):
         }
         
         for stat in pillar_stats_qs:
-            # .setdefault() gracefully handles any pillar names not in your initial dictionary
-            grouped_pillars.setdefault(stat.pillar, []).append({
+            grouped_pillars[stat.pillar].append({
                 'number': stat.number,
                 'unit': stat.unit
             })
@@ -222,9 +217,8 @@ class TestimonialViewSet(viewsets.ModelViewSet):
     queryset = Testimonial.objects.all().order_by('-created_at')
     serializer_class = TestimonialSerializer
     permission_classes = [permissions.AllowAny]  # Anyone can GET and POST
-
-
-# ######
+    
+    
 # from django.http import HttpResponse
 # from django.core.management import call_command
 

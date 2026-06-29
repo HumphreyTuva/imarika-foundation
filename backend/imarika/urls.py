@@ -8,7 +8,7 @@ urlpatterns = [
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(.*)$', serve, {'document_root': settings.STATIC_ROOT}),
     path('admin/', admin.site.urls),
-    path('', include('imarikapp.urls')),  # Replace 'api' with your actual app name if different
+    path('', include('imarikapp.urls')), 
     path('api/', include('imarikapp.urls')),
     path('', include('accounts.urls')),
     path("", include("opportunities.urls")),
@@ -18,3 +18,4 @@ urlpatterns = [
 # Serving media files during development
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

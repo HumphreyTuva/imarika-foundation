@@ -262,6 +262,7 @@ export default function LeadershipPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // axios.get("http://127.0.0.1:8080/api/api/leadership/")
     axios.get("https://imarikafoundation.org/api/api/api/leadership/")
       .then(res => {
         const data = res.data.results || res.data;

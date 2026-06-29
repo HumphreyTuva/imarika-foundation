@@ -14,8 +14,14 @@ SECRET_KEY = 'django-insecure-)*&dtj)u!r5yhdjtg602=bp8(_k011$&j&k3**auqid96*0^m9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'imarikafoundation.org',
+    'www.imarikafoundation.org',
+    ]
 
+# CSRF_TRUSTED_ORIGINS = ['https://imarikafoundation.org']
 
 
 REST_FRAMEWORK = {
@@ -37,9 +43,10 @@ REST_FRAMEWORK = {
 }
 
 
-# Enable CORS for your frontend URL (adjust to your frontend address)
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React dev server
+    "https://imarikafoundation.org",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
 ]
 
 
@@ -136,12 +143,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/api/static/'
+MEDIA_URL = '/api/media/'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

@@ -79,6 +79,8 @@ export const TYPE_CONFIG = {
    ───────────────────────────────────────────── */
 
 export const API_BASE = "https://imarikafoundation.pythonanywhere.com/api/opportunities/";
+// export const API_BASE = "http://127.0.0.1:8080/api/opportunities/";
+
 
 /**
  * Normalises a raw Opportunity record returned by the API

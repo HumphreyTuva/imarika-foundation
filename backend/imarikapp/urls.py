@@ -18,6 +18,7 @@ from .views import (
     PillarStatViewSet,
     SuccessStoryViewSet,
     ReportViewSet,
+    # run_migrations,
 )
 
 router = DefaultRouter()
@@ -31,12 +32,10 @@ router.register(r'admin/bigstats', BigStatViewSet, basename='admin-bigstats')
 router.register(r'admin/pillarstats', PillarStatViewSet, basename='admin-pillarstats')
 router.register(r'admin/stories', SuccessStoryViewSet, basename='admin-stories')
 router.register(r'admin/reports', ReportViewSet, basename='admin-reports')
-# from .views import run_migrations
 
 urlpatterns = [
     path('api/', include(router.urls)), 
     # path('run-migrations/', run_migrations),
-
     path('events/upcoming/', UpcomingEventsAPIView.as_view(), name='upcoming-events'),
     path('events/past/', PastEventsAPIView.as_view(), name='past-events'),
     path('events/create-with-images/', CreateEventWithImages.as_view(), name='create-event-with-images'),
